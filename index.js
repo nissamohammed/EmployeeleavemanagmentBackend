@@ -3,11 +3,15 @@ const express = require('express');
 const cors = require('cors');
 const router = require('./routes');
 require('./connections');
-const taskmanagerServer = express();
-taskmanagerServer.use(cors());
-taskmanagerServer.use(express.json());
-taskmanagerServer.use(router);
-PORT = 4000 || process.env.PORT;
-taskmanagerServer.listen(PORT,()=>{
-    console.log(`Task manager App server running successfully at port number: ${PORT}`);  
-})
+
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+app.use(router);
+
+const PORT = process.env.PORT || 4000;
+
+app.listen(PORT, () => {
+    console.log(`Leave Management server running at port ${PORT}`);
+});
